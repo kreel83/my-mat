@@ -55,7 +55,8 @@ export default function Login({navigation}) {
 
     return (
         <View style={styles.container}>
-            <Text>Connexion</Text>
+            <Text style={styles.title}>Connexion</Text>
+            <View style={styles.mainContainer}>
             <TextInput
                 placeholder="identifiant"
                 textContentType="emailAddress"
@@ -77,16 +78,15 @@ export default function Login({navigation}) {
                 <Text>Se connecter</Text>
             </TouchableOpacity>
 
-            <Button
-
+            <TouchableOpacity
+                style={styles.register}
                 title="S'enregistrer"
+                onPress={() => navigation.navigate('Register')} >
+                <Text>S'enregistrer</Text>
+            </TouchableOpacity>
 
-                onPress={() => navigation.navigate('Register')}
-            />
-            <Text>
-                {valeur}
-            </Text>
             <StatusBar style="auto"/>
+            </View>
         </View>
 
     )
@@ -95,12 +95,26 @@ export default function Login({navigation}) {
 }
 
 const styles = StyleSheet.create({
+    register: {
+        color: '#009387',
+        backgroundColor: 'none'
+    },
     button: {
-        width: '100px',
+        width: '140px',
         alignItems: "center",
-        backgroundColor: "#DDDDDD",
+        color: '#009387',
+        backgroundColor: "white",
+        borderColor: "#009387",
+        borderWidth: 2,
+        borderRadius: 15,
         padding: 10,
         marginBottom: 20
+    },
+    title: {
+        top: 40,
+        color: 'white',
+        fontSize: '30px',
+        textAlign: 'center',
     },
     container: {
         flex: 1,
@@ -108,14 +122,25 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    mainContainer: {
+        backgroundColor: 'white',
+        height: '80%',
+        width: '100%',
+        borderTopLeftRadius: '75px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: "column"
+    },
     input: {
         height: 40,
         width: 250,
         margin: 12,
-        borderWidth: 1,
         padding: 10,
         backgroundColor: "#009387",
-        color: 'white'
+        color: 'white',
+        borderRadius: '15px'
+
     },
 });
 
