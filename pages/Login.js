@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import {StatusBar} from 'expo-status-bar';
 import React from 'react';
 import {useState} from 'react';
+import { Div, ThemeProvider, Radio } from "react-native-magnus";
 import { NavigationContainer } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {StyleSheet, Text, View, TextInput, Button, TouchableOpacity} from 'react-native';
@@ -57,6 +58,7 @@ export default function Login({navigation}) {
         <View style={styles.container}>
             <Text style={styles.title}>Connexion</Text>
             <View style={styles.mainContainer}>
+                <Radio value={2} defaultChecked />
             <TextInput
                 placeholder="identifiant"
                 textContentType="emailAddress"

@@ -30,10 +30,6 @@ export default function ListeEnfants({route, navigation}) {
                   })
               })
       })
-
-
-
-
   }
 
   const { liste} = route.params;

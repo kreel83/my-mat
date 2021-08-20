@@ -11,6 +11,9 @@ export default function Enfant({route, navigation}) {
     const enfant = route.params.element;
     console.log(enfant.photo)
     const id = route.params.element.id
+    const mois = ['janvier','février','mars','avril','mai','juin',"juillet",'aout','septembre','octobre','novembre','decembre'];
+    const dateNaissance = enfant.ddn.split('-')
+    const moisNaissance = mois[parseInt(dateNaissance[1]) - 1]
 
     const onPressItems = () => {
         getData().then((resultat) => {
@@ -44,23 +47,35 @@ export default function Enfant({route, navigation}) {
 
     return (
         <View style={styles.container}>
-
-            <Text style={styles.item}>{enfant.nom}</Text>
-            <Text style={styles.item}>{enfant.prenom}</Text>
-            <Text style={styles.item}>{enfant.mail}</Text>
-            <Text style={styles.item}>{enfant.ddn}</Text>
             <Image
                 style={styles.tinyLogo}
                 source={{
                     uri: 'http://kreel.synology.me/mat-api/public' + enfant.photo,
                 }}
             />
+            <View style={styles.mainContainer}>
+            <Text style={styles.item}>{enfant.nom}</Text>
+            <Text style={styles.item}>{enfant.prenom}</Text>
+            {enfant.mail.split(';').map((mail, index) => (
+                    <Text>{mail}</Text>
+            ))}
+            <Text style={styles.cadre}>
+
+                    <Text style={styles.date0}>{moisNaissance}</Text>
+                    <Text style={styles.date1}>{dateNaissance[2]}</Text>
+                    <Text style={styles.date2}>{dateNaissance[0]}</Text>
+
+            </Text>
+
+            <Text style={styles.item}>{enfant.ddn}</Text>
+
             <Button
                 onPress={onPressItems}
                 title="Voir les items"
                 color="#841584"
                 accessibilityLabel="Learn more about this purple button"
             />
+            </View>
             <StatusBar style="auto"/>
         </View>
 
@@ -68,22 +83,51 @@ export default function Enfant({route, navigation}) {
 }
 
 const styles = StyleSheet.create({
+    date0: {
+        color: 'white',
+        backgroundColor: 'red',
+        padding: 8,
+        width: '100%',
+        textAlign: 'center',
+        fontSize: 20
+    },
+    date1: {
+       fontSize: 50
+    },
+    cadre: {
+        borderWidth: 3,
+        borderColor: 'red',
+        height: 120,
+        width: 120,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     container: {
-        flex: 1,
+        backgroundColor: '#009387',
         alignItems: 'center',
         justifyContent: 'center',
+        height: '100%'
+    },
+    mainContainer: {
+        backgroundColor: 'white',
+        height: '80%',
+        width: '100%',
+        borderTopLeftRadius: '75px',
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: "column"
     },
     item: {
         padding: 10,
-        fontSize: 18,
+        fontSize: 30,
         height: 44,
-        borderBottomColor: 'black',
-        borderBottomWidth: 2,
         textTransform: 'capitalize'
     },
     tinyLogo: {
-        width: 50,
-        height: 50,
+        width: 100,
+        height: 100,
         borderRadius: 50
     },
     logo: {
