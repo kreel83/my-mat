@@ -56,9 +56,12 @@ export default function Enfant({route, navigation}) {
             <View style={styles.mainContainer}>
             <Text style={styles.item}>{enfant.nom}</Text>
             <Text style={styles.item}>{enfant.prenom}</Text>
-            {enfant.mail.split(';').map((mail, index) => (
-                    <Text>{mail}</Text>
-            ))}
+            <Text style={styles.cadreMail}>
+                {enfant.mail.split(';').map((mail, index) => (
+                    <Text key={index}>{mail}</Text>
+                ))}
+            </Text>
+
             <Text style={styles.cadre}>
 
                     <Text style={styles.date0}>{moisNaissance}</Text>
@@ -67,7 +70,7 @@ export default function Enfant({route, navigation}) {
 
             </Text>
 
-            <Text style={styles.item}>{enfant.ddn}</Text>
+
 
             <Button
                 onPress={onPressItems}
@@ -86,7 +89,7 @@ const styles = StyleSheet.create({
     date0: {
         color: 'white',
         backgroundColor: 'red',
-        padding: 8,
+        padding: 12,
         width: '100%',
         textAlign: 'center',
         fontSize: 20
@@ -94,11 +97,18 @@ const styles = StyleSheet.create({
     date1: {
        fontSize: 50
     },
+    cadreMail: {
+        marginTop: 15,
+        padding: 10,
+        borderColor: 'lightgrey'
+    },
     cadre: {
+        marginTop: 50,
+        marginBottom: 30,
         borderWidth: 3,
         borderColor: 'red',
-        height: 120,
-        width: 120,
+        height: 140,
+        width: 140,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',

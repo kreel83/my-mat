@@ -4,12 +4,12 @@ import React from 'react';
 import {useState} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {StyleSheet, Text, View, TextInput, Button, TouchableOpacity} from 'react-native';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import ListeEnfants from './pages/ListeEnfants';
-import Enfant from './pages/Enfant'
-import Items from "./pages/Items";
+import Main from "./pages/Main";
 
 
 
@@ -17,24 +17,29 @@ import Items from "./pages/Items";
 
 export default function App() {
 
-    function HomeScreen({navigation}) {
+
+
+
+
+    function Log() {
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text>Home!</Text>
-            </View>
+            <Tab.Navigator>
+                <Tab.Screen name="Login" component={Login} />
+                <Tab.Screen name="Register" component={Register} />
+            </Tab.Navigator>
         );
     }
 
-    function SettingsScreen() {
+    function Listing() {
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text>Settings!</Text>
-            </View>
-        );
-    }
+        <Drawer.Navigator initialRouteName="Home">
+            <Drawer.Screen name="ListeEnfants" component={Log}  />
+        </Drawer.Navigator>
+        )}
 
-
+    const Tab = createBottomTabNavigator();
     const Stack = createStackNavigator();
+    const Drawer = createDrawerNavigator();
   return (
     <NavigationContainer>
 
@@ -44,14 +49,13 @@ export default function App() {
               backgroundColor: '#009387'
             }
           }}
-          initialRouteName="Login">
-        <Stack.Screen name="Login" component={Login} options={{
+          initialRouteName="Log">
+        <Stack.Screen name="Log" component={Log} options={{
           title: 'My home',
         }} />
-        <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="Enfant" component={Enfant} />
-        <Stack.Screen name="Items" component={Items} />
-        <Stack.Screen name="ListeEnfants" component={ListeEnfants} initialParams={{ liste: "test" }}/>
+
+        <Stack.Screen name="Main" component={Main} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

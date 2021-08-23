@@ -8,7 +8,12 @@ import {getData} from "../utils/storage";
 
 export default function ListeEnfants({route, navigation}) {
 
+
+
+
+
   const onChooseEnfant = (id) => {
+
       console.log(id)
       getData().then((resultat) => {
           fetch('http://kreel.synology.me/mat-api/public/api/enfant?api_token=' + resultat+'&id=' + id, {
@@ -33,9 +38,11 @@ export default function ListeEnfants({route, navigation}) {
   }
 
   const { liste} = route.params;
+  console.log('liste', liste)
   var width = Dimensions.get('window').width; //full width
     return (
         <View style={styles.container}>
+
         <FlatList style={{width: width}}
         data={liste}
         keyExtractor={item => item.id.toString()}

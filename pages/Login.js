@@ -2,17 +2,18 @@ import 'react-native-gesture-handler';
 import {StatusBar} from 'expo-status-bar';
 import React from 'react';
 import {useState} from 'react';
-import { Div, ThemeProvider, Radio } from "react-native-magnus";
 import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
 import {StyleSheet, Text, View, TextInput, Button, TouchableOpacity} from 'react-native';
 import {getData, storeData} from "../utils/storage";
+import Main from './Main'
 
 export default function Login({navigation}) {
     const [identifiant, setIdentifiant] = useState("mj@test.fr");
     const [password, setPassword] = useState("1234");
     const [valeur, setValeur] = useState("test2");
-
+    const Drawer = createDrawerNavigator();
 
 
     const onPressLogin = () => {
@@ -45,9 +46,7 @@ export default function Login({navigation}) {
                         .then((response) => {
 
                             console.log('test', response.result)
-                            navigation.navigate('ListeEnfants', {
-                                liste: response.result
-                            })
+                            navigation.navigate('Main')
                         })
                 })
             })
@@ -58,7 +57,7 @@ export default function Login({navigation}) {
         <View style={styles.container}>
             <Text style={styles.title}>Connexion</Text>
             <View style={styles.mainContainer}>
-                <Radio value={2} defaultChecked />
+
             <TextInput
                 placeholder="identifiant"
                 textContentType="emailAddress"
