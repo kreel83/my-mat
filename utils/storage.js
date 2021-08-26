@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+
 const storeData = async (value) => {
     try {
         await AsyncStorage.setItem('@api_token', value)
@@ -7,6 +8,7 @@ const storeData = async (value) => {
         // saving error
     }
 }
+
 
 const getData = async () => {
     try {

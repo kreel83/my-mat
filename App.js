@@ -10,6 +10,11 @@ import {StyleSheet, Text, View, TextInput, Button, TouchableOpacity} from 'react
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Main from "./pages/Main";
+import Correspondance from "./pages/Correspondances";
+import Parametre from "./pages/Parametres";
+import Evenement from "./pages/Evenements";
+import ListeEnfants from "./pages/ListeEnfants";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
@@ -18,6 +23,17 @@ import Main from "./pages/Main";
 export default function App() {
 
 
+    const isData = async () => {
+        try {
+            const value = await AsyncStorage.getItem('@api_token')
+            if (value !== null) {
+                return value;
+            }
+            return false;
+        } catch (e) {
+            return false;
+        }
+    }
 
 
 
@@ -30,33 +46,42 @@ export default function App() {
         );
     }
 
-    function Listing() {
-        return (
-        <Drawer.Navigator initialRouteName="Home">
-            <Drawer.Screen name="ListeEnfants" component={Log}  />
-        </Drawer.Navigator>
-        )}
+
 
     const Tab = createBottomTabNavigator();
     const Stack = createStackNavigator();
     const Drawer = createDrawerNavigator();
+    const data = isData()
   return (
     <NavigationContainer>
 
-      <Stack.Navigator
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: '#009387'
-            }
-          }}
-          initialRouteName="Log">
-        <Stack.Screen name="Log" component={Log} options={{
-          title: 'My home',
-        }} />
 
-        <Stack.Screen name="Main" component={Main} />
+                    {(data == false) ? (
+                        <>
+                        <Stack.Navigator>
+                            <Stack.Screen name="Log" component={Log} options={{
+                                title: 'My home',
+                            }}/>
 
-      </Stack.Navigator>
+
+                        <Stack.Screen name="App" component={App} />
+                        </Stack.Navigator>
+                        </>
+                        ) : (
+                        <>
+                        <Drawer.Navigator>
+                        <Drawer.Screen name="Main" component={Main} />
+                        <Drawer.Screen name="Correspondance" component={Correspondance} />
+                        <Drawer.Screen name="Evenement" component={Evenement} />
+                        <Drawer.Screen name="Parametre" component={Parametre} initialParams={{liste: 'test'}}/>
+                        <Drawer.Screen name="ListeEnfants" component={ListeEnfants} />
+                        </Drawer.Navigator>
+                        </>
+                        )
+                    }
+
+
+
     </NavigationContainer>
   );
 }

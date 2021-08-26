@@ -7,7 +7,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
 import {StyleSheet, Text, View, TextInput, Button, TouchableOpacity} from 'react-native';
 import {getData, storeData} from "../utils/storage";
-import Main from './Main'
+import App from '../App'
 
 export default function Login({navigation}) {
     const [identifiant, setIdentifiant] = useState("mj@test.fr");
@@ -46,7 +46,7 @@ export default function Login({navigation}) {
                         .then((response) => {
 
                             console.log('test', response.result)
-                            navigation.navigate('Main')
+                            navigation.navigate('App')
                         })
                 })
             })

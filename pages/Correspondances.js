@@ -6,15 +6,10 @@ import React from 'react';
 
 
 
-export default function Main() {
+export default function Correspondance() {
+
 
     return (
-            <h1>Menu principal</h1>
+        <h1>Correspondance</h1>
     );
 }
-
-
-
-
-
-
