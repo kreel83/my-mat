@@ -10,6 +10,7 @@ import {StyleSheet, Text, View, TextInput, Button, TouchableOpacity} from 'react
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Main from "./pages/Main";
+import ListeEnfants from './pages/ListeEnfants';
 
 
 
@@ -30,13 +31,6 @@ export default function App() {
         );
     }
 
-    function Listing() {
-        return (
-        <Drawer.Navigator initialRouteName="Home">
-            <Drawer.Screen name="ListeEnfants" component={Log}  />
-        </Drawer.Navigator>
-        )}
-
     const Tab = createBottomTabNavigator();
     const Stack = createStackNavigator();
     const Drawer = createDrawerNavigator();
@@ -50,11 +44,9 @@ export default function App() {
             }
           }}
           initialRouteName="Log">
-        <Stack.Screen name="Log" component={Log} options={{
-          title: 'My home',
-        }} />
+        <Stack.Screen name="Log" component={Log} />
 
-        <Stack.Screen name="Main" component={Main} />
+        <Stack.Screen name="ListeEnfants" component={ListeEnfants} />
 
       </Stack.Navigator>
     </NavigationContainer>

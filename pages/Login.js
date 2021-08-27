@@ -9,6 +9,7 @@ import {StyleSheet, Text, View, TextInput, Button, TouchableOpacity} from 'react
 import {getData, storeData} from "../utils/storage";
 import Main from './Main'
 
+
 export default function Login({navigation}) {
     const [identifiant, setIdentifiant] = useState("mj@test.fr");
     const [password, setPassword] = useState("1234");
@@ -46,7 +47,7 @@ export default function Login({navigation}) {
                         .then((response) => {
 
                             console.log('test', response.result)
-                            navigation.navigate('Main')
+                            navigation.navigate('ListeEnfants')
                         })
                 })
             })

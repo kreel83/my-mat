@@ -35,21 +35,19 @@ export default function Main() {
     const Stack = createStackNavigator();
     const Drawer = createDrawerNavigator();
     return (
-        <NavigationContainer>
 
-            <Stack.Navigator
-                screenOptions={{
-                    headerStyle: {
-                        backgroundColor: '#009387'
-                    }
-                }}
-                initialRouteName="ListeEnfants">
+        <Stack.Navigator
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: '#009387'
+                }
+            }}
+            initialRouteName="ListeEnfants">
 
-                <Stack.Screen name="Enfant" component={Enfant} />
-                <Stack.Screen name="Items" component={Items} />
-                <Stack.Screen name="ListeEnfants" component={ListeEnfants} initialParams={{ liste: 'test' }}/>
-            </Stack.Navigator>
-        </NavigationContainer>
+            <Stack.Screen name="Enfant" component={Enfant} />
+            <Stack.Screen name="Items" component={Items} />
+            <Stack.Screen name="ListeEnfants" component={ListeEnfants} initialParams={{ liste: 'test' }}/>
+        </Stack.Navigator>
     );
 }
 

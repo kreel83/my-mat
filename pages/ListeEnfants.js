@@ -37,13 +37,14 @@ export default function ListeEnfants({route, navigation}) {
       })
   }
 
-  const { liste} = route.params;
-  console.log('liste', liste)
+  // const { liste} = route.params;
+  // console.log('liste', liste)
+
   var width = Dimensions.get('window').width; //full width
     return (
         <View style={styles.container}>
 
-        <FlatList style={{width: width}}
+        {/* <FlatList style={{width: width}}
         data={liste}
         keyExtractor={item => item.id.toString()}
 
@@ -52,7 +53,7 @@ export default function ListeEnfants({route, navigation}) {
         style={styles.item}>{item.nom}
 
         </Text>}
-      />
+      /> */}
 
 
         <StatusBar style="auto" />
