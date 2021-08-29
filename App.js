@@ -1,7 +1,6 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import {useState} from 'react';
+import React, {useState} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -14,13 +13,17 @@ import Correspondance from "./pages/Correspondances";
 import Parametre from "./pages/Parametres";
 import Evenement from "./pages/Evenements";
 import ListeEnfants from "./pages/ListeEnfants";
+import Deconnexion from "./pages/Deconnexion";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {getData} from "./utils/storage";
 
 
 
 
 
 export default function App() {
+
 
 
     const isData = async () => {
@@ -48,15 +51,21 @@ export default function App() {
 
 
 
+    const [token, setToken] = useState(null)
     const Tab = createBottomTabNavigator();
     const Stack = createStackNavigator();
     const Drawer = createDrawerNavigator();
-    const data = isData()
+
+    getData().then((data) =>  {
+        setToken(data)
+    })
+
+
   return (
-    <NavigationContainer>
+    <NavigationContainer independent={true}>
 
 
-                    {(data == false) ? (
+                    {(token == null  ) ? (
                         <>
                         <Stack.Navigator>
                             <Stack.Screen name="Log" component={Log} options={{
@@ -64,25 +73,29 @@ export default function App() {
                             }}/>
 
 
-                        <Stack.Screen name="App" component={App} />
+
                         </Stack.Navigator>
                         </>
                         ) : (
                         <>
                         <Drawer.Navigator>
-                        <Drawer.Screen name="Main" component={Main} />
+                        <Drawer.Screen name="Main" component={Main} initialParams={{token: token }} />
                         <Drawer.Screen name="Correspondance" component={Correspondance} />
                         <Drawer.Screen name="Evenement" component={Evenement} />
                         <Drawer.Screen name="Parametre" component={Parametre} initialParams={{liste: 'test'}}/>
-                        <Drawer.Screen name="ListeEnfants" component={ListeEnfants} />
+                            <Drawer.Screen name="ListeEnfants" component={ListeEnfants} />
+                            <Drawer.Screen name="Deconnexion" component={Deconnexion} />
                         </Drawer.Navigator>
+
                         </>
+
                         )
                     }
 
 
 
     </NavigationContainer>
+
   );
 }
 

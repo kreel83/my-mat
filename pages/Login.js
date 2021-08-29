@@ -44,51 +44,60 @@ export default function Login({navigation}) {
                         }
                     }).then(response => response.json())
                         .then((response) => {
+                            setLog(true)
 
-                            console.log('test', response.result)
-                            navigation.navigate('App')
                         })
                 })
             })
     }
 
+    const [log, setLog] = useState(false)
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Connexion</Text>
-            <View style={styles.mainContainer}>
-
-            <TextInput
-                placeholder="identifiant"
-                textContentType="emailAddress"
-                style={styles.input}
-                onChangeText={setIdentifiant}
-                value={identifiant}
-            />
-            <TextInput
-                placeholder="mot de passe"
-                secureTextEntry={true}
-                style={styles.input}
-                onChangeText={setPassword}
-                value={password}
-            />
-            <TouchableOpacity
-                style={styles.button}
-                onPress={onPressLogin}
-            >
-                <Text>Se connecter</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-                style={styles.register}
-                title="S'enregistrer"
-                onPress={() => navigation.navigate('Register')} >
-                <Text>S'enregistrer</Text>
-            </TouchableOpacity>
-
-            <StatusBar style="auto"/>
+        <>
+        { (log == true ) ? (
+            <View>
+            <App />
             </View>
-        </View>
+        ) : (
+            <View style={styles.container}>
+                <Text style={styles.title}>Connexion</Text>
+                <View style={styles.mainContainer}>
+
+                    <TextInput
+                        placeholder="identifiant"
+                        textContentType="emailAddress"
+                        style={styles.input}
+                        onChangeText={setIdentifiant}
+                        value={identifiant}
+                    />
+                    <TextInput
+                        placeholder="mot de passe"
+                        secureTextEntry={true}
+                        style={styles.input}
+                        onChangeText={setPassword}
+                        value={password}
+                    />
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={onPressLogin}
+                    >
+                        <Text>Se connecter</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={styles.register}
+                        title="S'enregistrer"
+                        onPress={() => navigation.navigate('Register')} >
+                        <Text>S'enregistrer</Text>
+                    </TouchableOpacity>
+
+                    <StatusBar style="auto"/>
+                </View>
+            </View>
+        )
+        }
+        </>
 
     )
 

@@ -9,16 +9,23 @@ const storeData = async (value) => {
     }
 }
 
-
-const getData = async () => {
+const deleteData = async () => {
     try {
-        const value = await AsyncStorage.getItem('@api_token')
-        if (value !== null) {
-            return value;
-        }
+        await AsyncStorage.removeItem('@api_token')
+        return "deconnect";
     } catch (e) {
-        // error reading value
+        // saving error
     }
 }
 
-export {getData, storeData}
+
+
+const getData = async () => {
+
+        const value = await AsyncStorage.getItem('@api_token')
+        return value
+
+
+}
+
+export {getData, storeData, deleteData}
