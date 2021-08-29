@@ -79,7 +79,9 @@ export default function App() {
                         ) : (
                         <>
                         <Drawer.Navigator>
+
                         <Drawer.Screen name="Main" component={Main} initialParams={{token: token }} />
+
                         <Drawer.Screen name="Correspondance" component={Correspondance} />
                         <Drawer.Screen name="Evenement" component={Evenement} />
                         <Drawer.Screen name="Parametre" component={Parametre} initialParams={{liste: 'test'}}/>

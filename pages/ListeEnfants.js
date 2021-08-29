@@ -14,8 +14,8 @@ export default function ListeEnfants({route, navigation}) {
         // write your code here, it's like componentWillMount
 
 
-
-                getData().then((resultat) => {
+                const resultat = await getData();
+                const response = await 
                     fetch('http://kreel.synology.me/mat-api/public/api/enfants?api_token=' + resultat, {
                         method: 'post',
                         headers: {
@@ -26,12 +26,11 @@ export default function ListeEnfants({route, navigation}) {
                         body: {
                             api_token: resultat
                         }
-                    }).then(response => response.json())
-                        .then((response) => {
-                            console.log(response)
-                            return response;
-                        })
-                })
+                    })
+                const liste = await response.json()    
+                return liste;
+
+               
 
     }
 
@@ -62,7 +61,8 @@ export default function ListeEnfants({route, navigation}) {
       })
   }
 
-  classe().then((liste) => {
+    const  liste = classe();
+
       var width = Dimensions.get('window').width; //full width
       return (
           <View style={styles.container}>
@@ -83,7 +83,7 @@ export default function ListeEnfants({route, navigation}) {
           </View>
 
       )
-  })
+  
 
 
 }
